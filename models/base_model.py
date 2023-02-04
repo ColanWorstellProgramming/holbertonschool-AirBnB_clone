@@ -13,9 +13,10 @@ class BaseModel:
                     value.isoformat == datetime.utcnow()
                 if key != __class__:
                     setattr(self, key, value)
-                    self.id = str(uuid4())
-                    self.created_at = datetime.utcnow()
-                    self.updated_at = datetime.utcnow()
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.utcnow()
+            self.updated_at = datetime.utcnow()
 
     def __str__(self):
         """sets to tring format"""
@@ -28,7 +29,7 @@ class BaseModel:
         storage = FileStorage
         """saves time object was created"""
         self.updated_at = datetime.utcnow()
-        storage.save()
+        storage.save(self)
 
     def to_dict(self):
         """dictionary func"""
