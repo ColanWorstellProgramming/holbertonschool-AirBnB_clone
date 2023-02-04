@@ -32,7 +32,7 @@ class BaseModelTestsQuestionFour(unittest.TestCase):
     def test_same_id(self):
         bm = BaseModel()
         bm2 = BaseModel()
-        self.assertIsInstance(bm.id, bm2.id)
+        self.assertNotEqual(bm.id, bm2.id)
 
     def test_tim(self):
         bm = BaseModel()
@@ -42,9 +42,9 @@ class BaseModelTestsQuestionFour(unittest.TestCase):
         self.assertEqual(bm.created_at, c)
         self.assertNotEqual(bm.updated_at, u)
 
-    def test_(self):
+    def test_met(self):
         bm = BaseModel()
-        self.assertIsInstance(bm.created_at, bm.updated_at)
+        self.assertIn(bm.id, str(bm))
 
 if __name__ == '__main__':
     unittest.main()
