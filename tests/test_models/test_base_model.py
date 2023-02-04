@@ -29,5 +29,22 @@ class BaseModelTestsQuestionFour(unittest.TestCase):
         self.assertIsInstance(dc["updated_at"], str)
         self.assertIsInstance(dc["created_at"], str)
 
+    def test_same_id(self):
+        bm = BaseModel()
+        bm2 = BaseModel()
+        self.assertNotEqual(bm.id, bm2.id)
+
+    def test_tim(self):
+        bm = BaseModel()
+        c = bm.created_at
+        u = bm.updated_at
+        bm.save()
+        self.assertEqual(bm.created_at, c)
+        self.assertNotEqual(bm.updated_at, u)
+
+    def test_met(self):
+        bm = BaseModel()
+        self.assertIn(bm.id, str(bm))
+
 if __name__ == '__main__':
     unittest.main()
