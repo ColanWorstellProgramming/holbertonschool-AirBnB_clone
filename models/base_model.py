@@ -26,10 +26,8 @@ class BaseModel:
         return str
 
     def save(self):
-        storage = FileStorage
         """saves time object was created"""
         self.updated_at = datetime.utcnow()
-        storage.save(self)
 
     def to_dict(self):
         """dictionary func"""
