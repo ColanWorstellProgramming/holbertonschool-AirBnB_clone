@@ -2,25 +2,33 @@
 """base model class"""
 from uuid import uuid4
 from datetime import datetime
-
+from models.engine.file_storage import FileStorage
 
 class BaseModel:
     """basemodel class"""
-    def __init__(self, id=0, created_at=0, updated_at=0):
-        self.id = str(uuid4())
-        self.created_at = datetime.utcnow()
-        self.updated_at = datetime.utcnow()
+    def __init__(self, *args, **kwargs):
+        if kwargs:
+            for key, value in kwargs.items():
+                if key == 'created_at' or key == 'upated_at':
+                    value.isoformat == datetime.utcnow()
+                if key != __class__:
+                    setattr(self, key, value)
+                    self.id = str(uuid4())
+                    self.created_at = datetime.utcnow()
+                    self.updated_at = datetime.utcnow()
 
     def __str__(self):
         """sets to tring format"""
-        strect = "[{}]".format(self.__class__.__name__)
-        strect += "({})".format(self.id)
-        strect += "{}".format(self.__dict__)
-        return strect
+        str = "[{}]".format(self.__class__.__name__)
+        str += "({})".format(self.id)
+        str += "{}".format(self.__dict__)
+        return str
 
     def save(self):
+        storage = FileStorage
         """saves time object was created"""
         self.updated_at = datetime.utcnow()
+        storage.save()
 
     def to_dict(self):
         """dictionary func"""
