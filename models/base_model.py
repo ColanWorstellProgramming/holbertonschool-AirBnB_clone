@@ -31,7 +31,7 @@ class BaseModel:
 
     def to_dict(self):
         """dictionary func"""
-        mydict = self.__dict__
+        mydict = self.__dict__.copy()
         mydict["__class__"] = self.__class__
         mydict["created_at"] = self.created_at.isoformat()
         mydict["updated_at"] = self.updated_at.isoformat()
