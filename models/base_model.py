@@ -13,6 +13,9 @@ class BaseModel:
                     value.isoformat == datetime.utcnow()
                 if key != __class__:
                     setattr(self, key, value)
+                    if ky in ('created_at', 'updated_at'):
+                        setattr(self, ky, datetime.datetime.strptime(vl, '%Y-%m-%dT%H:%M:%S.%f'))
+
         else:
             self.id = str(uuid4())
             self.created_at = datetime.utcnow()
@@ -31,7 +34,7 @@ class BaseModel:
 
     def to_dict(self):
         """dictionary func"""
-        mydict = self.__dict__
+        mydict = self.__dict__.copy()
         mydict["__class__"] = self.__class__
         mydict["created_at"] = self.created_at.isoformat()
         mydict["updated_at"] = self.updated_at.isoformat()
