@@ -13,8 +13,8 @@ class BaseModel:
                     value.isoformat == datetime.utcnow()
                 if key != __class__:
                     setattr(self, key, value)
-                    if ky in ('created_at', 'updated_at'):
-                        setattr(self, ky, datetime.datetime.strptime(vl, '%Y-%m-%dT%H:%M:%S.%f'))
+                    if key in ('created_at', 'updated_at'):
+                        setattr(self, key, datetime.datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f'))
 
         else:
             self.id = str(uuid4())
