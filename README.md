@@ -6,25 +6,25 @@
 
 ## Command Interpreter
 
-# To use the command interpreter in interactive mode run the command ./console.py
+### To use the command interpreter in interactive mode run the command ./console.py
 
 * To use the command interpreter in non-interactive mode run the command echo "help" | ./console.py
 
-# Examples In Interactive Mode
+### Examples In Interactive Mode
 
-* Start
+## To Start
 * >>> ./console.py
 
-* Command Choices
+## Command Choices
 * >>> help
 * >>> EOF
 * >>> create
 * >>> quit
 * >>> show
 
-# Examples In Non-Interactive Mode
+### Examples In Non-Interactive Mode
 
-* Commands
+## Commands
 * >>> echo "help" | ./console.py
 * >>> echo "EOF" | ./console.py
 * >>> echo "create" | ./console.py
