@@ -2,8 +2,7 @@
 """base model class"""
 from uuid import uuid4
 from datetime import datetime
-from models.engine.file_storage import FileStorage
-
+time = '%Y-%m-%dT%H:%M:%S.%f'
 class BaseModel:
     """basemodel class"""
     def __init__(self, *args, **kwargs):
@@ -14,7 +13,7 @@ class BaseModel:
                 if key != __class__:
                     setattr(self, key, value)
                     if key in ('created_at', 'updated_at'):
-                        setattr(self, key, datetime.datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f'))
+                        setattr(self, key, datetime.datetime.strptime(value, time))
 
         else:
             self.id = str(uuid4())
