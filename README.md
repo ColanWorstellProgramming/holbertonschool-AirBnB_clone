@@ -6,14 +6,14 @@
 
 ## Command Interpreter
 
-### To use the command interpreter in interactive mode run the command ./console.py
+* To use the command interpreter in interactive mode run the command ./console.py
 
 * To use the command interpreter in non-interactive mode run the command echo "help" | ./console.py
 
 ### Examples In Interactive Mode
 
 ## To Start
-* >>> ./console.py
+* '>>>' ./console.py
 
 ## Command Choices
 * >>> help
