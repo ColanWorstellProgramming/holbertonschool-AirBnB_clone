@@ -13,20 +13,20 @@
 ### Examples In Interactive Mode
 
 ## To Start
-* '>>>' ./console.py
+* `>>>` ./console.py
 
 ## Command Choices
-* >>> help
-* >>> EOF
-* >>> create
-* >>> quit
-* >>> show
+* `>>>` help
+* `>>>` EOF
+* `>>>` create
+* `>>>` quit
+* `>>>` show
 
 ### Examples In Non-Interactive Mode
 
 ## Commands
-* >>> echo "help" | ./console.py
-* >>> echo "EOF" | ./console.py
-* >>> echo "create" | ./console.py
-* >>> echo "quit" | ./console.py
-* >>> echo "show" | ./console.py
+* `>>>` echo "help" | ./console.py
+* `>>>` echo "EOF" | ./console.py
+* `>>>` echo "create" | ./console.py
+* `>>>` echo "quit" | ./console.py
+* `>>>` echo "show" | ./console.py
