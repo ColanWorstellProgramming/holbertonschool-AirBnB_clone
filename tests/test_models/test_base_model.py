@@ -34,6 +34,10 @@ class BaseModelTestsQuestionFour(unittest.TestCase):
         bm2 = BaseModel()
         self.assertNotEqual(bm.id, bm2.id)
 
+    def test_ini(self):
+        bm = BaseModel()
+        self.assertEqual(bm.created_at, bm.updated_at)
+
     def test_tim(self):
         bm = BaseModel()
         c = bm.created_at
