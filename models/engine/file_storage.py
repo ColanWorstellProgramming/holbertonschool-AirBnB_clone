@@ -1,28 +1,42 @@
 #!/usr/bin/python3
 """storage class"""
 import json
-from os import path
+import models
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
+from models.city import City
+
 
 class FileStorage:
     """file storage"""
     __objects = {}
-    __file_path = 'objects.json'
+    __file_path = 'file.json'
 
     def all(self):
         """returns all objects in dict"""
         return self.__objects
 
     def new(self, obj):
-       key = obj.__class__.__name__ + "." + obj.id
-       self.__objects[key] = obj
+        self.__objects[f"{obj.__class__.__name__}.{obj.id}"] = obj
 
     def save(self):
-        jsondict = {}
-        jsondict = self.__objects
-        with open( "__file_path" , "w") as f:
-            json.dump(jsondict, f)
+        with open(self.__file_path, mode='w', encoding='utf-8') as f:
+            moby = {key: obj.to_dict() for key, obj in self.__objects.items()}
+            json.dump(moby, f)
 
     def reload(self):
-        if self.__file_path:
-            try: self.__objects = json.loads(self.__objects)
-            except: not self.__file_path                
+        try:
+            with open(self.__file_path, encoding='utf-8') as f:
+                moby = json.load(f.read())
+                for key, value in moby.items():
+                    obj = eval(value['__class__'])(**value)
+                    self.__objects[key] = obj
+
+        except FileNotFoundError:
+            pass
+        except json.decoder.JSONDecodeError:
+            pass
