@@ -18,8 +18,8 @@ class BaseModel:
 
         else:
             self.id = str(uuid4())
-            self.created_at = datetime.utcnow()
-            self.updated_at = datetime.utcnow()
+            self.created_at = datetime.datetime.now()
+            self.updated_at = datetime.datetime.now()
 
     def __str__(self):
         """sets to tring format"""
@@ -30,7 +30,7 @@ class BaseModel:
 
     def save(self):
         """saves time object was created"""
-        self.updated_at = datetime.utcnow()
+        self.updated_at = datetime.datetime.now()
         models.storage.save()
 
     def to_dict(self):
