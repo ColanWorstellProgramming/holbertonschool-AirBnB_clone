@@ -32,10 +32,12 @@ class FileStorage:
     def reload(self):
         try:
             with open(self.__file_path, encoding='utf-8') as f:
-                moby = json.load(f)
+                moby = json.load(f.read())
                 for key, value in moby.items():
                     obj = eval(value['__class__'])(**value)
                     self.__objects[key] = obj
 
         except FileNotFoundError:
+            pass
+        except json.decoder.JSONDecodeError:
             pass
