@@ -10,6 +10,7 @@ from models.amenity import Amenity
 from models.review import Review
 from models.city import City
 
+
 class FileStorage:
     """file storage"""
     __objects = {}
@@ -20,8 +21,8 @@ class FileStorage:
         return self.__objects
 
     def new(self, obj):
-       key = obj.__class__.__name__ + "." + obj.id
-       FileStorage.__objects[key] = obj
+        key = obj.__class__.__name__ + "." + obj.id
+        FileStorage.__objects[key] = obj
 
     def save(self):
         with open(self.__file_path, mode='w', encoding='utf-8') as f:

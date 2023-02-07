@@ -21,5 +21,6 @@ class TestReviewModel(unittest.TestCase):
         self.assertIn("user_id", dir(Review()))
         self.assertNotIn("user_id", sd.__dict__)
 
+
 if __name__ == "__main__":
     unittest.main()

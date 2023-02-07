@@ -8,6 +8,7 @@ import uuid
 from models.base_model import BaseModel
 from datetime import datetime
 
+
 class BaseModelTestsQuestionFour(unittest.TestCase):
     """unit test for BaseModel class"""
     def test_id(self):
@@ -54,6 +55,7 @@ class BaseModelTestsQuestionFour(unittest.TestCase):
         self.assertEqual(bm1.updated_at,
                          datetime.strptime(updated_at, '%Y-%m-%dT%H:%M:%S.%f'))
         self.assertEqual(bm1.name, 'uwu')
+
 
 if __name__ == '__main__':
     unittest.main()
