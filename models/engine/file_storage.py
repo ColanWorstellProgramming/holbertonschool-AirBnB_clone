@@ -20,12 +20,12 @@ class FileStorage:
 
     def new(self, obj):
        key = obj.__class__.__name__ + "." + obj.id
-       self.__objects[key] = obj
+       FileStorage.__objects[key] = obj
 
     def save(self):
         with open(self.__file_path, mode='w', encoding='utf-8') as f:
-            rchrd = {key: obj.to_dict() for key, obj in self.__objects.items()}
-            json.dump(rchrd, f)
+            moby = {key: obj.to_dict() for key, obj in self.__objects.items()}
+            json.dump(moby, f)
 
     def reload(self):
         try:
