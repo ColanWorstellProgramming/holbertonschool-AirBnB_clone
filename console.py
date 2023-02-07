@@ -2,7 +2,7 @@
 """console"""
 import cmd
 import models
-from models.base_model import *
+from models.base_model import BaseModel
 from models import storage
 from models.user import User
 from models.state import State
@@ -10,6 +10,16 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
+
+cls = {"BaseModel": BaseModel,
+       "User": User,
+       "State": State,
+       "City": City,
+       "Amenity": Amenity,
+       "Place": Place,
+       "Review": Review
+       }
+
 
 class HBNBCommand(cmd.Cmd):
     """main loop for commands"""
@@ -85,13 +95,16 @@ class HBNBCommand(cmd.Cmd):
         return
 
     def do_all(self, line):
-        if line == "":
-            print([str(ii) for ii in storage.all().values()])
-            return
-        if line in HBNBCommand.cls_lst:
-            print([str(ii) for ik, ii in storage.all().items() if line in ik])
-        else:
+        if len(line) == 0:
+            for key in storage.all():
+                print([str(storage.all()[key])])
+        elif line not in cls.keys():
             print("** class doesn't exist **")
+        else:
+            for key, value in storage.all().items():
+                key_arg = key.split(".")
+                if line == key_arg[0]:
+                    print([str(storage.all()[key])])
 
     def do_update(self, line):
         args = line.split(maxsplit=3)
@@ -123,6 +136,7 @@ class HBNBCommand(cmd.Cmd):
             setattr(target, args[2], eval(args[3]))
         except Exception as er:
             print(er)
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()

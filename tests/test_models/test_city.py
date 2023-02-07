@@ -15,5 +15,6 @@ class TestCityModel(unittest.TestCase):
         self.assertIn("state_id", dir(ct))
         self.assertNotIn("state_id", ct.__dict__)
 
+
 if __name__ == "__main__":
     unittest.main()

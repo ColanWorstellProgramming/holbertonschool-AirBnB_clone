@@ -15,5 +15,6 @@ class TestStateModel(unittest.TestCase):
         self.assertIn("name", dir(State()))
         self.assertNotIn("name", st.__dict__)
 
+
 if __name__ == "__main__":
     unittest.main()
