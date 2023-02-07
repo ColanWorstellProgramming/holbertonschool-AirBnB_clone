@@ -21,17 +21,21 @@ class FileStorage:
         return self.__objects
 
     def new(self, obj):
-        self.__objects[f"{obj.__class__.__name__}.{obj.id}"] = obj
+        """sets obj with key"""
+        key = obj.__class__.__name__ + "." + obj.id
+        FileStorage.__objects[key] = obj
 
     def save(self):
+        """serializes ibjects to json file"""
         with open(self.__file_path, mode='w', encoding='utf-8') as f:
             moby = {key: obj.to_dict() for key, obj in self.__objects.items()}
             json.dump(moby, f)
 
     def reload(self):
+        """deseriaizes objescts"""
         try:
-            with open(self.__file_path, encoding='utf-8') as f:
-                moby = json.load(f.read())
+            with open(self.__file_path, mode='r', encoding='utf-8') as f:
+                moby = json.load(f)
                 for key, value in moby.items():
                     obj = eval(value['__class__'])(**value)
                     self.__objects[key] = obj

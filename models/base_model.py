@@ -22,7 +22,8 @@ class BaseModel:
 
     def __str__(self):
         """sets to tring format"""
-        str = "[{}]".format(self.__class__.__name__)
+        cname = self.__class__.__name__
+        str = "[{}]".format(cname)
         str += "({})".format(self.id)
         str += "{}".format(self.__dict__)
         return str
@@ -35,7 +36,7 @@ class BaseModel:
     def to_dict(self):
         """dictionary func"""
         mydict = self.__dict__.copy()
-        mydict["__class__"] = self.__class__
+        mydict["__class__"] = self.__class__.__name__
         mydict["created_at"] = self.created_at.isoformat()
         mydict["updated_at"] = self.updated_at.isoformat()
         return mydict
