@@ -17,19 +17,20 @@ cls = {"BaseModel": BaseModel,
        "City": City,
        "Amenity": Amenity,
        "Place": Place,
-       "Review": Review
-       }
+       "Review": Review}
 
 
 class HBNBCommand(cmd.Cmd):
     """main loop for commands"""
     prompt = "(hbnb) "
 
-    def do_quit(self, args):
+    res = ["created_at", "updated_at", "id"]
+
+    def do_quit(self, line):
         """exits loop for quit"""
         raise SystemExit
 
-    def do_EOF(self, args):
+    def do_EOF(self, line):
         """exits loop for EOF"""
         raise SystemExit
 
