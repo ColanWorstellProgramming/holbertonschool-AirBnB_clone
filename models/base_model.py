@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """base model class"""
 from uuid import uuid4
-from datetime import datetime
-time = '%Y-%m-%dT%H:%M:%S.%f'
+import datetime
+import models
+
 class BaseModel:
     """basemodel class"""
     def __init__(self, *args, **kwargs):
@@ -13,7 +14,7 @@ class BaseModel:
                 if key != __class__:
                     setattr(self, key, value)
                     if key in ('created_at', 'updated_at'):
-                        setattr(self, key, datetime.datetime.strptime(value, time))
+                        setattr(self, key, datetime.datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f'))
 
         else:
             self.id = str(uuid4())
@@ -30,6 +31,7 @@ class BaseModel:
     def save(self):
         """saves time object was created"""
         self.updated_at = datetime.utcnow()
+        models.storage.save()
 
     def to_dict(self):
         """dictionary func"""

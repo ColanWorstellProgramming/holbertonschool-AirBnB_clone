@@ -1,7 +1,13 @@
 #!/usr/bin/python3
 """storage class"""
 import json
-import os
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
+from models.city import City
 
 class FileStorage:
     """file storage"""
@@ -17,15 +23,17 @@ class FileStorage:
        self.__objects[key] = obj
 
     def save(self):
-        obdict = {}
-        for key, value in self.__objects.items():
-            obdict[key] = value.to_dict()
-        with open( "__file_path" , "w", encoding="utf-8") as f:
-            (json.dump(obdict, f))
+        with open(self.__file_path, mode='w', encoding='utf-8') as f:
+            rchrd = {key: obj.to_dict() for key, obj in self.__objects.items()}
+            json.dump(rchrd, f)
 
     def reload(self):
-        if os.path.exists(self.__file_path):
-            with open(self.__file_path, 'r', encoding='utf-8') as f:
-                LoadDict = json.loads(f.read())
-            for key, val in LoadDict.items():
-                self.__objects[key] = eval(val["__class__"])(**val)
+        try:
+            with open(self.__file_path, encoding='utf-8') as f:
+                moby = json.load(f)
+                for key, value in moby.items():
+                    obj = eval(value['__class__'])(**value)
+                    self.__objects[key] = obj
+
+        except FileNotFoundError:
+            pass
