@@ -29,7 +29,7 @@ class HBNBCommand(cmd.Cmd):
             print(x.id)
         else:
             print("** class doesn't exist **")
-
+ 
     def do_show(self, args):
         """shows information"""
         if (len(args) == 0):
